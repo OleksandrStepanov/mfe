@@ -110,7 +110,7 @@ export default ({ domain_ids, onSignIn }) => {
         // Define message event handler
         const handleMessage = (event) => {
             // Security check: Ensure event origin is expected (change '*' to your domain)
-            if (event.origin !== '*' && event.origin !== "http://localhost:8082") {
+            if (event.origin !== '*' && event.origin !== "https://d3r74pjt0alh8y.cloudfront.net") {
                 console.warn("Blocked message from unauthorized origin:", event.origin);
                 return;
             }
