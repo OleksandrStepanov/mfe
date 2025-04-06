@@ -39,6 +39,7 @@ export default function ToolbarLayout({ onDataChange, auth }) {
     };
 
     useEffect(() => {
+        console.log(auth, 'auth')
         if (!auth || !auth.Signature || !auth.UserIp || !auth.Endpoint) {
             console.warn("Auth headers missing, waiting for authentication...");
             return; // Exit effect early if auth is not ready
@@ -89,7 +90,7 @@ export default function ToolbarLayout({ onDataChange, auth }) {
         }
 
         fetchData();
-    }, []);
+    }, [auth]);
 
     useEffect(() => {
         const handleDateChange = (event) => {
