@@ -61,7 +61,7 @@ const WrapperChart = styled.div`
 `;
 
 const authHeaders = {
-    "Signature": "71X+mKFvfSixyA+D:1Jz7/EF224Fa5hLavj/nBelGNAE5AnuUEA/MZVNdCszm2V9pYyw8oj7D1uGsTIQ6f6HsOvGU282sYld1QlSjFrk5afuSsDaSx72hkJUlETXU0NWE22mbO84v9xrzx/B/bBmFEzFM57FtRVo4w3Aupi/e/QPvaFXBe+liWWqmAOEdcsF8lZHvR4R2TKmqS14PTbCF0FZM3lCrlmSkOoBdGERa7Vm6AK0AGopfTN5i+p8NJ/snDvyedhQROw8+r1sds947YRRurDhhhHBHojF3C6e9RcjbnJsW2Lxr1uEf4WqKpk6yYcJHO7zUpdt/mPKgIiylC4HramupsVuR8Fr7FAjgZGitQHgDbA8xl4asjTjzIckRlQ==",
+    "Signature": "3A1BiFh7gXbs7tGn:tSstV30McGFUyz0q30PC9mh7yQtj0mfhmH6u6W+zKoJ2gVIthhbcxxnPh8gaBKAqEWjHadE8C8qEsIHLKT0ijxUnyxEqffLJxuaF7ZFaZL+43bHFUmZwDO2VVUi6jGKFaTBFSejx9UNKQWkPl+He5ryFZqr9YxSxRAVxgnAYv4cENPnCZLXpkPof8z9b60Sm6/07fJj/YW+96WpAY79msTCJvhx12EDdlf6vjpRyYiuYvJlzKozsswMecYJVgPMhet6Xv9wGVFRLBHLudjLeZ2NXKBoGj3yQl4OY2rKdH8TD4CODzp5KKd3qj6HGp6pq0rJ7Rwe88L90NMITFdj8kgf5un5gNMOaxCL0XG3P3roLDfK12w==",
     "UserIp": "127.0.0.1",
     "UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
     "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
