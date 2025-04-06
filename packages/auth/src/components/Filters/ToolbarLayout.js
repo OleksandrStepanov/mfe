@@ -51,7 +51,8 @@ export default function ToolbarLayout({ onDataChange, auth }) {
                     headers: {
                         'Content-Type': 'application/json',
                         'Signature': auth.Signature,
-                        'ubo-user-ip': auth.UserIp
+                        'Ubo-User-Ip': auth.UserIp,
+                        'User-Agent': auth.UserAgent
                     },
                     body: JSON.stringify({
                         "p_report_params":{
