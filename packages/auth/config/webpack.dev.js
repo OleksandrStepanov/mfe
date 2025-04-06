@@ -8,6 +8,9 @@ const devConfig = {
   mode: 'development',
   output: {
     publicPath: 'http://localhost:8082/',
+    library: {
+      type: 'umd',
+    },
   },
   devServer: {
     port: 8082,
@@ -22,7 +25,17 @@ const devConfig = {
       exposes: {
         './AuthApp': './src/bootstrap',
       },
-      shared: packageJson.dependencies,
+      shared: {
+        ...packageJson.dependencies,
+        react: {
+          singleton: true,
+          requiredVersion: packageJson.dependencies.react,
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: packageJson.dependencies['react-dom'],
+        },
+      }
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
