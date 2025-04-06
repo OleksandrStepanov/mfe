@@ -139,7 +139,6 @@ export default ({ domain_ids, onSignIn }) => {
 
     return (
         <Container>
-            <web-greeting name="Justin"></web-greeting>
             <ToolbarLayout onDataChange={handleInputsChange} auth={authHeaders}/>
             <NestedContainer>
                 <PlayerStats data={sharedData} auth={authHeaders}/>

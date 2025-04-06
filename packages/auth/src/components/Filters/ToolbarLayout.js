@@ -90,7 +90,7 @@ export default function ToolbarLayout({ onDataChange, auth }) {
         }
 
         fetchData();
-    }, [auth]);
+    }, []);
 
     useEffect(() => {
         const handleDateChange = (event) => {
