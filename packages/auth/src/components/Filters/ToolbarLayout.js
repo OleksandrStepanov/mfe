@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 import moment from "moment";
 
-export default function ToolbarLayout({ onDataChange }) {
+export default function ToolbarLayout({ onDataChange, auth }) {
     let newArray;
     const [activeFilterIndex, setActiveFilterIndex] = React.useState(null);
     const selectRef = useRef(null);
@@ -39,12 +39,20 @@ export default function ToolbarLayout({ onDataChange }) {
     };
 
     useEffect(() => {
+        if (!auth || !auth.Signature || !auth.UserIp || !auth.Endpoint) {
+            console.warn("Auth headers missing, waiting for authentication...");
+            return; // Exit effect early if auth is not ready
+        }
         const fetchData = async () => {
             try {
                 // setIsLoading(true); // Set loading to true before API call
                 const requestOptions = {
                     method: 'POST',
-                    headers: { 'Content-type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Signature': auth.Signature,
+                        'ubo-user-ip': auth.UserIp
+                    },
                     body: JSON.stringify({
                         "p_report_params":{
                             "p_domains":[
@@ -64,7 +72,7 @@ export default function ToolbarLayout({ onDataChange }) {
                         }
                     })
                 };
-                const result = await fetch('http://postgrest-dm-plain.kafka.stage.dm.everymatrix.local/rpc/domains_lookup', requestOptions);
+                const result = await fetch(`${auth.Endpoint}?resourceName=domains_lookup&namespace=ce`, requestOptions);
                 const resultJson = await result.json();
                 const newArray = resultJson.domains.map(item => ({
                     label: item.lookup_value,

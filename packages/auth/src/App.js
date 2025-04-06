@@ -61,7 +61,7 @@ const WrapperChart = styled.div`
 `;
 
 const authHeaders = {
-    "Signature": "CEMA+l7DTqb+ERzB:7ptM/7rwemuUtjjbYk2Yp3UE8apwSzOmacY6w7aX1mEzyljA/6MN9+PRkPq/4Do1vbciJY1EoXnESRwyOvYj7PAvqxVRId+UL+KVtYQPdlR+MIc846VvvVKpM3xVciMPSvn8q50Q8XhGMDQOgEpB60b3g6DX7H7EeViKSHU4IZrtPjI34W++6nzXZTFjIYIbfTybS9H14GQUk/el065nFNmqyyaX2Cf/7DM/fJFrSRKX5+Vte3ySxaDkpK+DWxcH8RJSi0hJ8T1HRHy7utDdrmB6LrXKoOsCbsmi37Y5CSYNm8iJ/MTECrc37OGc/KcuacYsuDP9cNzTezqRwPZMPhmU0gb9X0EtH5lTA7r/lMtzvljFVw==",
+    "Signature": "gCzOLT3J/j7e3/T0:2RGrLBL/9HCX8oYxExtrTHV/hpxHNO5+1ydb5ZlItKEJOSIm4saHF0R6HNt2cOb+ytGiMqd7IeFVauBwbjh5VP3inx1l581sLkSV+aTL/UmzWsbDEFUBRyu7pU2rX5oH9cnBsFJHQTJu1RMCTiBdXIo3dHlnQJRQdCZRZ4mfKVqaUQF8fpFCj0P1Z7E1VUoUtJHex3mvJDhIDVfYTXJ8egYlmY0NRDB2Bxm+7UrtZ9Rqrg6ywUBMX9E8T1npJpk6cbqE1LC3N5eHbTwIRPNs/yyaDi/jDfLJ3ThW5QMsl7gFNJd3MP5+OJeaWAR7dIDHvZrzo8UCyGKgV9ffvXxfDaYI5bV9z8eEaoXDvvkWmWqqIgqA8Q==",
     "UserIp": "127.0.0.1",
     "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
 };
@@ -139,7 +139,7 @@ export default ({ domain_ids, onSignIn }) => {
     return (
         <Container>
             <web-greeting name="Justin"></web-greeting>
-            <ToolbarLayout onDataChange={handleInputsChange} />
+            <ToolbarLayout onDataChange={handleInputsChange} auth={authHeaders}/>
             <NestedContainer>
                 <PlayerStats data={sharedData} auth={authHeaders}/>
                 <BalanceCard data={sharedData} auth={authHeaders}/>
