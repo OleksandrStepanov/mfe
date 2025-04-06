@@ -122,7 +122,7 @@ const Card = styled.section`
   display: flex;
   flex-direction: column;
   padding-right: 20px;
-  flex: 49%;
+  flex: 48%;
   font-family: Inter, sans-serif;
 `;
 
