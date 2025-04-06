@@ -98,7 +98,7 @@ export default ({ domain_ids, onSignIn }) => {
             const response = await fetch('https://api.ipify.org');
             const data = await response.text();
             const authHeaders2 = {
-                "Signature": "WMVPgn/6CYywpLqM:Xpp1NW15IcRvfCXbhA1HxWGitVZITJSLXnu9llJSFlqeNR20JusfK/gHAKKA0Qw30BqoTyWrQZotuRul9YX4pBKoTgrF7HAMiAZqd0TjQFKX85WCqmrpO3uq++mkHU79FNwSnaHKaAZmPRLZ83RxydrQ91nkGVH3Tkp6NZTJfGFVtOoSis+LZwAvIe/hHEbR2uaw03S0/NxWRJ7TRfJLhgT86OQA6R8ucZlLvVLaCqVxO4Qo8b6hg1zZaUtiFKB1G9jDByt1MPqRGD5GpVtvjQqUCf2d7/t7cCAFtNJPOTzjSDAtGaRnm9aCPUFNGb02qNjT+Z2hW4r/NW75YNQkReJ6FwaxR12VjbsC1jLTqNa1ne84/A==",
+                "Signature": "oF5bJZsV0wo928NN:cBJgONgLak2FK2yXV9OhEInoPo1L4ijV/+zxdOHkNcX+C8jKyT/e/Rmll3SgQP9DECHSohtpPIOd5AEGKMrRHMoUiKtLcsroeRQUBdEAUN4ELCqt5gcOZ2WBVFRWoQpD6txuItHpy6SlqKnnZX17oM1XvT03uCPpYMNe/pxJE49xTU2Pfgxjm9VFJjp7nLACGT5sIjWtK71LUJo1jcgscOrqEMX+oBUWavkl5XLaGmBQU3vjFzFnsx9aUs95H1+seXdVKgELers53H6vNtE3wCz/LQ3/IuAu5OVyHDjxUygycCpj0ZdTtQE8o0YfYt2ZlXS1OdFkQQKDjNHslaBTTL4UjqJ34/W8z41ClD1evkFie+cdkw==",
                 "UserIp": "127.0.0.1",
                 "UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
                 "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
