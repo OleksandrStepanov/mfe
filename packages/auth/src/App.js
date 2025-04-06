@@ -97,8 +97,16 @@ export default ({ domain_ids, onSignIn }) => {
         try {
             const response = await fetch('https://api.ipify.org');
             const data = await response.text();
-            setIpAddress(data);
-            authHeaders.UserIp = data;
+            const authHeaders2 = {
+                "Signature": "WMVPgn/6CYywpLqM:Xpp1NW15IcRvfCXbhA1HxWGitVZITJSLXnu9llJSFlqeNR20JusfK/gHAKKA0Qw30BqoTyWrQZotuRul9YX4pBKoTgrF7HAMiAZqd0TjQFKX85WCqmrpO3uq++mkHU79FNwSnaHKaAZmPRLZ83RxydrQ91nkGVH3Tkp6NZTJfGFVtOoSis+LZwAvIe/hHEbR2uaw03S0/NxWRJ7TRfJLhgT86OQA6R8ucZlLvVLaCqVxO4Qo8b6hg1zZaUtiFKB1G9jDByt1MPqRGD5GpVtvjQqUCf2d7/t7cCAFtNJPOTzjSDAtGaRnm9aCPUFNGb02qNjT+Z2hW4r/NW75YNQkReJ6FwaxR12VjbsC1jLTqNa1ne84/A==",
+                "UserIp": "127.0.0.1",
+                "UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+                "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
+            };
+            setAuthHeaders(authHeaders2);
+
+            // setIpAddress(data);
+            // authHeaders.UserIp = data;
         } catch(error) {
             console.log('Failed to fetch IP:', error);
         }
@@ -116,12 +124,12 @@ export default ({ domain_ids, onSignIn }) => {
             }
 
             // Check if the message is of type 'GetAuthHeaders'
-            if (event.data && event.data.type === 'GetAuthHeaders') {
-                // alert('Bingo')
-                // console.log(event.data.data, 'event.data.data')
-                setAuthHeaders(event.data.data);
-                // setAuthHeaders(authHeaders);
-            }
+            // if (event.data && event.data.type === 'GetAuthHeaders') {
+            //     // alert('Bingo')
+            //     // console.log(event.data.data, 'event.data.data')
+            //     setAuthHeaders(event.data.data);
+            //     // setAuthHeaders(authHeaders);
+            // }
         };
 
         // Add event listener
