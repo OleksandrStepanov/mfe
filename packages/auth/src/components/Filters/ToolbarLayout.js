@@ -6,7 +6,7 @@ export default function ToolbarLayout({ onDataChange, auth }) {
     let newArray;
     const [activeFilterIndex, setActiveFilterIndex] = React.useState(null);
     const selectRef = useRef(null);
-    const datePickerRef = useRef(null);
+    const datePickerRef = useRef(moment());
     const [selectedDates, setSelectedDates] = useState(null);
     const [selectedDomains, setSelectedDomains] = useState(null);
     const [optionDomains, setOptionsDomains] = useState(null);
@@ -39,14 +39,12 @@ export default function ToolbarLayout({ onDataChange, auth }) {
     };
 
     useEffect(() => {
-        console.log(auth, 'auth')
         if (!auth || !auth.Signature || !auth.UserIp || !auth.Endpoint) {
             console.warn("Auth headers missing, waiting for authentication...");
             return; // Exit effect early if auth is not ready
         }
         const fetchData = async () => {
             try {
-                console.log('domains called')
                 // setIsLoading(true); // Set loading to true before API call
                 const requestOptions = {
                     method: 'POST',
@@ -77,12 +75,10 @@ export default function ToolbarLayout({ onDataChange, auth }) {
                 };
                 const result = await fetch(`${auth.Endpoint}?resourceName=domains_lookup&namespace=ce`, requestOptions);
                 const resultJson = await result.json();
-                console.log(resultJson, 'resultJson')
                 const newArray = resultJson.domains.map(item => ({
                     label: item.lookup_value,
                     value: item.lookup_key
                 }));
-                console.log(newArray, 'newArray');
                 setOptionsDomains(newArray);
             } catch (error) {
                 console.error('Error fetching data:', error);
