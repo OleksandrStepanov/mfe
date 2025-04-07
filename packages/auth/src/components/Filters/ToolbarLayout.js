@@ -46,6 +46,7 @@ export default function ToolbarLayout({ onDataChange, auth }) {
         }
         const fetchData = async () => {
             try {
+                console.log('domains called')
                 // setIsLoading(true); // Set loading to true before API call
                 const requestOptions = {
                     method: 'POST',
@@ -91,7 +92,7 @@ export default function ToolbarLayout({ onDataChange, auth }) {
         }
 
         fetchData();
-    }, []);
+    }, [auth]);
 
     useEffect(() => {
         const handleDateChange = (event) => {
