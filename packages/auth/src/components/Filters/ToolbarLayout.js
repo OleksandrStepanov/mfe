@@ -76,6 +76,7 @@ export default function ToolbarLayout({ onDataChange, auth }) {
                 };
                 const result = await fetch(`${auth.Endpoint}?resourceName=domains_lookup&namespace=ce`, requestOptions);
                 const resultJson = await result.json();
+                console.log(resultJson, 'resultJson')
                 const newArray = resultJson.domains.map(item => ({
                     label: item.lookup_value,
                     value: item.lookup_key
