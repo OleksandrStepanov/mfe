@@ -61,7 +61,7 @@ const WrapperChart = styled.div`
     flex: 100%;
 `;
 
-const { headers } = useSession();
+const headers = useSession();
 console.log(headers, 'headers')
 
 const authHeaders = {
