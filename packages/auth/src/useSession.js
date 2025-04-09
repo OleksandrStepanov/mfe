@@ -2,22 +2,23 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 const useSession = () => {
     const [headers, setHeaders] = useState(null);
-    const isMounted = useRef(true); // Ref to track component mount status
+    const isMounted = useRef(false);
 
     const listener = useCallback((event) => {
-        if (event.data?.type === 'SetRequestHeaders' && event.data.payload) {
+        console.log('Listener called - isMounted:', isMounted.current);
+        if (event.data?.type === 'SetRequestHeaders' && event.data.payload && isMounted.current) {
             window.removeEventListener('message', listener);
             const payload = {
                 Signature: event.data.payload?.Signature || '',
                 UserIp: event.data.payload?.UserIp || '',
             };
-            if (payload.Signature && payload.UserIp && isMounted.current) { // Check if mounted
+            if (payload.Signature && payload.UserIp) {
                 setHeaders(payload);
-            } else if (!isMounted.current) {
-                console.warn('Attempted to update state on unmounted component.');
             } else {
                 console.error('Invalid payload structure:', event.data.payload);
             }
+        } else if (!isMounted.current) {
+            console.warn('Attempted to update state on unmounted component.');
         } else {
             console.warn('Invalid or missing payload:', event.data);
         }
@@ -29,16 +30,18 @@ const useSession = () => {
     }, [listener]);
 
     useEffect(() => {
+        isMounted.current = true; // Set isMounted to true when component mounts
+
         const setupHeaders = () => {
             getHeaders(); // Initial call
 
             const intervalId = setInterval(getHeaders, 1200000); // Every 20 minutes
 
             return () => {
-                console.log('useSession cleanup function called');
+                console.log('useSession cleanup function called - setting isMounted to false');
                 clearInterval(intervalId);
                 window.removeEventListener('message', listener);
-                isMounted.current = false; // Set mounted status to false on unmount
+                isMounted.current = false;
             };
         };
 
