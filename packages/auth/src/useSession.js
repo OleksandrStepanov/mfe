@@ -21,6 +21,7 @@ const useSession = () => {
             const payload = {
                 Signature: event.data.payload?.Signature || '',
                 UserIp: event.data.payload?.UserIp || '',
+                Endpoint: "https://ubo.stage.dm.everymatrix.com/acs-proxy",
             };
             if (payload.Signature && payload.UserIp) {
                 setHeaders(payload);
@@ -37,10 +38,10 @@ const useSession = () => {
         window.addEventListener('message', listener);
 
         // Add a timeout to remove the listener if a response is not received.
-        // const timeoutId = setTimeout(() => {
-        //     window.removeEventListener('message', listener);
-        //     console.warn("Message listener timed out.");
-        // }, 5000);
+        const timeoutId = setTimeout(() => {
+            window.removeEventListener('message', listener);
+            console.warn("Message listener timed out.");
+        }, 5000);
 
         return () => clearTimeout(timeoutId); // Cleanup timeout on component unmount
     }, [listener]);
@@ -50,14 +51,14 @@ const useSession = () => {
 
         getHeaders(); // Initial call
 
-        // const intervalId = setInterval(getHeaders, 1200000); // Every 20 minutes
+        const intervalId = setInterval(getHeaders, 1200000); // Every 20 minutes
 
-        // return () => {
-        //     console.log('useSession cleanup function called - setting isMounted to false');
-        //     clearInterval(intervalId);
-        //     window.removeEventListener('message', listener);
-        //     isMounted.current = false; // Set isMounted to false on unmount
-        // };
+        return () => {
+            console.log('useSession cleanup function called - setting isMounted to false');
+            clearInterval(intervalId);
+            window.removeEventListener('message', listener);
+            isMounted.current = false; // Set isMounted to false on unmount
+        };
     }, [getHeaders, listener]);
 
     return { headers };
