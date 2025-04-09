@@ -61,8 +61,7 @@ const WrapperChart = styled.div`
     flex: 100%;
 `;
 
-const headers = useSession();
-console.log(headers, 'headers')
+
 
 const authHeaders = {
     "Signature": "/UpsTEepEsGljx+v:iovVYrVd5KsPf0zBbJAkHcrMnqB72K7HmUJ0xjCqu5tGeJcH+Y7EsOA2Gx1RMjEwp7ucVlNu7vMQ8VOKbJnjCvyQ71QvfTuqeyWfk6zJcXUa8gzS/kklaQInk3dy8Rw5IGu10sD6Res7T7aMU26L0Wx21FxQoXAWO5ofTZ4BKIOgBJI9O5AZtYy5zhFaCvrvnGlKBSf24heRXJRIc4/NvL8cwTO4S6ynH7dKXSjj8G4PknmZ8bGECGhTUbOH/u9EBwE6BOvfT6CgZjH+SKoEQTq1tfAG+2CHgsViRHZIlOKnTyzBsPDeohVzdYE3450FJ2oUoW/1Z1wMy3APPIz5M33XlPcOU0DXQLa/enFswSWgyREAPw==",
@@ -78,6 +77,8 @@ setTimeout(() => {
 
 
 export default ({ domain_ids, onSignIn }) => {
+    const headers = useSession();
+    console.log(headers, 'headers')
     const [count, setCount] = useState(0);
     const [sharedData, setSharedData] = useState('');
     const [ipAddress, setIpAddress] = useState('');
