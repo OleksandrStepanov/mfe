@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const useSession = () => {
     const [headers, setHeaders] = useState(null);
+    const isMounted = useRef(true); // Ref to track component mount status
 
     const listener = useCallback((event) => {
         if (event.data?.type === 'SetRequestHeaders' && event.data.payload) {
@@ -9,10 +10,11 @@ const useSession = () => {
             const payload = {
                 Signature: event.data.payload?.Signature || '',
                 UserIp: event.data.payload?.UserIp || '',
-                Endpoint: "https://ubo.stage.dm.everymatrix.com/acs-proxy"
             };
-            if (payload.Signature && payload.UserIp) {
+            if (payload.Signature && payload.UserIp && isMounted.current) { // Check if mounted
                 setHeaders(payload);
+            } else if (!isMounted.current) {
+                console.warn('Attempted to update state on unmounted component.');
             } else {
                 console.error('Invalid payload structure:', event.data.payload);
             }
@@ -33,8 +35,10 @@ const useSession = () => {
             const intervalId = setInterval(getHeaders, 1200000); // Every 20 minutes
 
             return () => {
+                console.log('useSession cleanup function called');
                 clearInterval(intervalId);
                 window.removeEventListener('message', listener);
+                isMounted.current = false; // Set mounted status to false on unmount
             };
         };
 
