@@ -71,13 +71,13 @@ const authHeaders = {
 };
 
 // Send the message (targetOrigin should be '*' for local testing, change for security)
-setTimeout(() => {
-    window.postMessage({ type: 'GetRequestHeaders', data: authHeaders }, '*');
-}, 0)
+// setTimeout(() => {
+//     window.postMessage({ type: 'GetRequestHeaders', data: authHeaders }, '*');
+// }, 0)
 
 
 export default ({ domain_ids, onSignIn }) => {
-    const headers = useSession();
+    const {headers} = useSession();
     console.log(headers, 'headers')
     const [count, setCount] = useState(0);
     const [sharedData, setSharedData] = useState('');
@@ -108,7 +108,7 @@ export default ({ domain_ids, onSignIn }) => {
                 "UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
                 "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
             };
-            setAuthHeaders(authHeaders2);
+            setAuthHeaders(headers);
 
             // setIpAddress(data);
             // authHeaders.UserIp = data;
