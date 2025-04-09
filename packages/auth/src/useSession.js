@@ -5,6 +5,7 @@ const useSession = () => {
     const isMounted = useRef(true);
 
     const listener = useCallback((event) => {
+        console.log(event, 'event listener fires after get called')
         // if (!isMounted.current) {
         //     console.warn('Attempted to update state on unmounted component.');
         //     return;
