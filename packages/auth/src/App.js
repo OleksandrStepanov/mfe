@@ -62,6 +62,7 @@ const WrapperChart = styled.div`
 `;
 
 const { headers } = useSession();
+console.log(headers, 'headers')
 
 const authHeaders = headers;
 
@@ -95,8 +96,10 @@ export default ({ domain_ids, onSignIn }) => {
         try {
             const response = await fetch('https://api.ipify.org');
             const data = await response.text();
+            const authHeaders2 = useSession();
+            console.log(authHeaders2, 'authHeaders2')
             // const authHeaders2 = headers;
-            setAuthHeaders(headers);
+            setAuthHeaders(authHeaders2);
 
             // setIpAddress(data);
             // authHeaders.UserIp = data;
