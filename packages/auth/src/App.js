@@ -65,7 +65,7 @@ const WrapperChart = styled.div`
 console.log(useSession, 'useSession')
 
 const authHeaders = {
-    "Signature": "kU2ZQidemgf3p5+o:muHFyVBw3uEBe9wNpRo71KwAB3sepdNw0Je0Y7gfvVXi43i7myVSuRErsRsePIB33MUQJcZHtHgXkEMdyQGqQXuzgNPkCEu2+bSlb5PcqQEWxhgPUnU+EGxHBB93Y3TLjNSqWNbDY5fxjdWeNjeygs+W3WtM47nP4+Hvl9mIXof5oE6AGk03fu/LQHK1N9C7TkB7maQY6yCCqMv9TSBAzESr5h1pKlVLW7Wx3Nfqerl+C/LiJzKBhsQ+9ystrxDoN/FITgKHMiRlOu4f22WhGekSRR2JMM+/T8hsEd6uDxI1yPySThucfiddxA7D8SlFHdTBJfo6FZtqpP5rNrJjjORwRi1mo3u/CqABxqljsu589Yu45g==",
+    "Signature": "Et7TsSc4lrXEXV5T:5+7bW1zkCHB4l3qWScczMgwofBhvlqvJw4kavHz1wkEdiY4WVh5kyssrcxJjdnHKcKegxXSVHLcvfHEms7+6UsfD1kQzVOSTcCd1SW+4wWoVOlWlTeuRq7DoX8VH9MQTq/3+vzNpJdte+/t/OWjjHdu5vPzp5zPEDlU+RzSiNwON+4GigFxa2fanC6kRJiG5rLeW9PTDbIRQ7ei6HkGpbN391Mj8eEI79fhmFxWaqj23t39IvsXgttG6rmAx+dmaWhl7MgpNNKnOXyNOvOTkmbi2NojRM7hfCn2UbcA+lq6jpjdwojSQ2tcTk9rGDfKBZS9mM/ifj0zHuwDf1SlE4R6xeMEYspLDjHlja8q8hjpUCiiQqA==",
     "UserIp": "127.0.0.1",
     "UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
     "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
@@ -102,7 +102,7 @@ export default ({ domain_ids, onSignIn }) => {
             const response = await fetch('https://api.ipify.org');
             const data = await response.text();
             const authHeaders2 = {
-                "Signature": "kU2ZQidemgf3p5+o:muHFyVBw3uEBe9wNpRo71KwAB3sepdNw0Je0Y7gfvVXi43i7myVSuRErsRsePIB33MUQJcZHtHgXkEMdyQGqQXuzgNPkCEu2+bSlb5PcqQEWxhgPUnU+EGxHBB93Y3TLjNSqWNbDY5fxjdWeNjeygs+W3WtM47nP4+Hvl9mIXof5oE6AGk03fu/LQHK1N9C7TkB7maQY6yCCqMv9TSBAzESr5h1pKlVLW7Wx3Nfqerl+C/LiJzKBhsQ+9ystrxDoN/FITgKHMiRlOu4f22WhGekSRR2JMM+/T8hsEd6uDxI1yPySThucfiddxA7D8SlFHdTBJfo6FZtqpP5rNrJjjORwRi1mo3u/CqABxqljsu589Yu45g==",
+                "Signature": "Et7TsSc4lrXEXV5T:5+7bW1zkCHB4l3qWScczMgwofBhvlqvJw4kavHz1wkEdiY4WVh5kyssrcxJjdnHKcKegxXSVHLcvfHEms7+6UsfD1kQzVOSTcCd1SW+4wWoVOlWlTeuRq7DoX8VH9MQTq/3+vzNpJdte+/t/OWjjHdu5vPzp5zPEDlU+RzSiNwON+4GigFxa2fanC6kRJiG5rLeW9PTDbIRQ7ei6HkGpbN391Mj8eEI79fhmFxWaqj23t39IvsXgttG6rmAx+dmaWhl7MgpNNKnOXyNOvOTkmbi2NojRM7hfCn2UbcA+lq6jpjdwojSQ2tcTk9rGDfKBZS9mM/ifj0zHuwDf1SlE4R6xeMEYspLDjHlja8q8hjpUCiiQqA==",
                 "UserIp": "127.0.0.1",
                 "UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
                 "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
