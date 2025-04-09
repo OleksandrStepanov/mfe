@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import useSession from './useSession';
 import ReactDOM from "react-dom"
 import { Switch, Route, Router } from 'react-router-dom';
 import r2wc from "react-to-webcomponent"
@@ -60,17 +61,14 @@ const WrapperChart = styled.div`
     flex: 100%;
 `;
 
-const authHeaders = {
-    "Signature": "B334koClsUkGd01q:FD/WFgoDD4P4H3+Q2+E+GY+m/kcpchhmtO+G8bGfPJKHlyt5DQh99XP8TV526hBsXFfORLHmodqiLSwzn43kF/e6l4krrZLez8OLQapV+0O9b+sIH2Hi8fFEtASR3PXy+HaIO8VasSAonxAJP7r20nJg3gf8P3HC22HhbY2YZzyc2CqJQKfYa4W9h3X6Ds6EzdAhrPRDJc1/PNg3Dn3Qwv3yrnM2TxU3exe6Tp3IsKq6p5T6GE5NQrxUEKe6YO3yYNZytx5mwwiAYcGSiWTrfys6baOCiXWZiENjhXczar939hEylE8sdd8o51frmVLEe7NM+Nm1x/NR1r6Z1Pw2mXWpUq/1y2j7aExh+aHdHeRF4QI9VQ==",
-    "UserIp": "127.0.0.1",
-    "UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-    "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
-};
+const { headers } = useSession();
+
+const authHeaders = headers;
 
 // Send the message (targetOrigin should be '*' for local testing, change for security)
-setTimeout(() => {
-    window.postMessage({ type: 'GetAuthHeaders', data: authHeaders }, '*');
-}, 0)
+// setTimeout(() => {
+//     window.postMessage({ type: 'GetRequestHeaders', data: authHeaders }, '*');
+// }, 0)
 
 
 export default ({ domain_ids, onSignIn }) => {
@@ -97,13 +95,8 @@ export default ({ domain_ids, onSignIn }) => {
         try {
             const response = await fetch('https://api.ipify.org');
             const data = await response.text();
-            const authHeaders2 = {
-                "Signature": "B334koClsUkGd01q:FD/WFgoDD4P4H3+Q2+E+GY+m/kcpchhmtO+G8bGfPJKHlyt5DQh99XP8TV526hBsXFfORLHmodqiLSwzn43kF/e6l4krrZLez8OLQapV+0O9b+sIH2Hi8fFEtASR3PXy+HaIO8VasSAonxAJP7r20nJg3gf8P3HC22HhbY2YZzyc2CqJQKfYa4W9h3X6Ds6EzdAhrPRDJc1/PNg3Dn3Qwv3yrnM2TxU3exe6Tp3IsKq6p5T6GE5NQrxUEKe6YO3yYNZytx5mwwiAYcGSiWTrfys6baOCiXWZiENjhXczar939hEylE8sdd8o51frmVLEe7NM+Nm1x/NR1r6Z1Pw2mXWpUq/1y2j7aExh+aHdHeRF4QI9VQ==",
-                "UserIp": "127.0.0.1",
-                "UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-                "Endpoint": "https://ubo.stage.dm.everymatrix.com/acs-proxy"
-            };
-            setAuthHeaders(authHeaders2);
+            // const authHeaders2 = headers;
+            setAuthHeaders(headers);
 
             // setIpAddress(data);
             // authHeaders.UserIp = data;
