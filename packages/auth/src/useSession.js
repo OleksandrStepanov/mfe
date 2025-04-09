@@ -5,16 +5,16 @@ const useSession = () => {
     const isMounted = useRef(true);
 
     const listener = useCallback((event) => {
-        if (!isMounted.current) {
-            console.warn('Attempted to update state on unmounted component.');
-            return;
-        }
-
-        // Verify the origin of the message.
-        if (event.origin !== window.origin) {
-            console.warn("Message origin is not trusted.");
-            return;
-        }
+        // if (!isMounted.current) {
+        //     console.warn('Attempted to update state on unmounted component.');
+        //     return;
+        // }
+        //
+        // // Verify the origin of the message.
+        // if (event.origin !== window.origin) {
+        //     console.warn("Message origin is not trusted.");
+        //     return;
+        // }
 
         // Validate event payload and update state
         if (event.data?.type === 'SetRequestHeaders' && event.data.payload) {
@@ -38,13 +38,13 @@ const useSession = () => {
         window.postMessage({ type: 'GetAuthHeaders' }, '*');
         window.addEventListener('message', listener);
 
-        // Add a timeout to remove the listener if a response is not received.
-        const timeoutId = setTimeout(() => {
-            window.removeEventListener('message', listener);
-            console.warn("Message listener timed out.");
-        }, 5000);
-
-        return () => clearTimeout(timeoutId); // Cleanup timeout on component unmount
+        // // Add a timeout to remove the listener if a response is not received.
+        // const timeoutId = setTimeout(() => {
+        //     window.removeEventListener('message', listener);
+        //     console.warn("Message listener timed out.");
+        // }, 5000);
+        //
+        // return () => clearTimeout(timeoutId); // Cleanup timeout on component unmount
     }, [listener]);
 
     useEffect(() => {
