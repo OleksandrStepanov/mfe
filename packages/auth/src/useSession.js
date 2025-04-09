@@ -35,7 +35,7 @@ const useSession = () => {
     }, []);
 
     const getHeaders = useCallback(() => {
-        window.postMessage({ type: 'GetRequestHeaders' }, '*');
+        window.postMessage({ type: 'GetAuthHeaders' }, '*');
         window.addEventListener('message', listener);
 
         // Add a timeout to remove the listener if a response is not received.
