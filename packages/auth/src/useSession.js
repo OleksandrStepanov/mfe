@@ -5,7 +5,6 @@ const useSession = () => {
     const isMounted = useRef(true);
 
     const listener = useCallback((event) => {
-        console.log(event, 'ev')
         // if (!isMounted.current) {
         //     console.warn('Attempted to update state on unmounted component.');
         //     return;
@@ -19,6 +18,7 @@ const useSession = () => {
 
         // Validate event payload and update state
         if (event.data?.type === 'SetRequestHeaders' && event.data.payload) {
+            console.log(event, 'ev')
             const payload = {
                 Signature: event.data.payload?.Signature || '',
                 UserIp: event.data.payload?.UserIp || '',
