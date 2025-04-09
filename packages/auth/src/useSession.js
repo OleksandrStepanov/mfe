@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 const useSession = () => {
-    const [headers, setHeaders] = useState({ Signature: "", UserIp: "" }); // Initialize state with defaults
+    const [headers, setHeaders] = useState({ Signature: "", UserIp: "", Endpoint: "https://ubo.stage.dm.everymatrix.com/acs-proxy" }); // Initialize state with defaults
     const isMounted = useRef(true);
 
     const listener = useCallback((event) => {
@@ -37,10 +37,10 @@ const useSession = () => {
         window.addEventListener('message', listener);
 
         // Add a timeout to remove the listener if a response is not received.
-        const timeoutId = setTimeout(() => {
-            window.removeEventListener('message', listener);
-            console.warn("Message listener timed out.");
-        }, 5000);
+        // const timeoutId = setTimeout(() => {
+        //     window.removeEventListener('message', listener);
+        //     console.warn("Message listener timed out.");
+        // }, 5000);
 
         return () => clearTimeout(timeoutId); // Cleanup timeout on component unmount
     }, [listener]);
