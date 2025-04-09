@@ -2,11 +2,21 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 const useSession = () => {
     const [headers, setHeaders] = useState(null);
-    const isMounted = useRef(false);
+    const isMounted = useRef(true); // Initialize to true
 
     const listener = useCallback((event) => {
-        console.log('Listener called - isMounted:', isMounted.current);
-        if (event.data?.type === 'SetRequestHeaders' && event.data.payload && isMounted.current) {
+        if (!isMounted.current) {
+            console.warn('Attempted to update state on unmounted component.');
+            return;
+        }
+
+        //Verify the origin of the message.
+        if(event.origin !== window.origin){
+            console.warn("Message origin is not trusted.");
+            return;
+        }
+
+        if (event.data?.type === 'SetRequestHeaders' && event.data.payload) {
             window.removeEventListener('message', listener);
             const payload = {
                 Signature: event.data.payload?.Signature || '',
@@ -16,9 +26,9 @@ const useSession = () => {
                 setHeaders(payload);
             } else {
                 console.error('Invalid payload structure:', event.data.payload);
+                // Consider setting a default state here
+                setHeaders({Signature: "", UserIp: ""});
             }
-        } else if (!isMounted.current) {
-            console.warn('Attempted to update state on unmounted component.');
         } else {
             console.warn('Invalid or missing payload:', event.data);
         }
@@ -27,11 +37,15 @@ const useSession = () => {
     const getHeaders = useCallback(() => {
         window.postMessage({ type: 'GetRequestHeaders' }, '*');
         window.addEventListener('message', listener);
+        //add a timeout to remove the listener if a response is not recieved.
+        setTimeout(() => {
+            window.removeEventListener('message', listener);
+            console.warn("Message listener timed out.");
+        }, 5000)
+
     }, [listener]);
 
     useEffect(() => {
-        isMounted.current = true; // Set isMounted to true when component mounts
-
         const setupHeaders = () => {
             getHeaders(); // Initial call
 
