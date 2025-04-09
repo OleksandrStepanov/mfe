@@ -61,8 +61,8 @@ const WrapperChart = styled.div`
     flex: 100%;
 `;
 
-// const { headers } = useSession();
-// console.log(headers, 'headers')
+const { headers } = useSession();
+console.log(headers, 'headers')
 
 const authHeaders = {
     "Signature": "kU2ZQidemgf3p5+o:muHFyVBw3uEBe9wNpRo71KwAB3sepdNw0Je0Y7gfvVXi43i7myVSuRErsRsePIB33MUQJcZHtHgXkEMdyQGqQXuzgNPkCEu2+bSlb5PcqQEWxhgPUnU+EGxHBB93Y3TLjNSqWNbDY5fxjdWeNjeygs+W3WtM47nP4+Hvl9mIXof5oE6AGk03fu/LQHK1N9C7TkB7maQY6yCCqMv9TSBAzESr5h1pKlVLW7Wx3Nfqerl+C/LiJzKBhsQ+9ystrxDoN/FITgKHMiRlOu4f22WhGekSRR2JMM+/T8hsEd6uDxI1yPySThucfiddxA7D8SlFHdTBJfo6FZtqpP5rNrJjjORwRi1mo3u/CqABxqljsu589Yu45g==",
