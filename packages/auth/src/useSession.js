@@ -5,16 +5,17 @@ const useSession = () => {
     const isMounted = useRef(true);
 
     const listener = useCallback((event) => {
-        if (!isMounted.current) {
-            console.warn('Attempted to update state on unmounted component.');
-            return;
-        }
-
-        // Verify the origin of the message.
-        if (event.origin !== window.origin) {
-            console.warn("Message origin is not trusted.");
-            return;
-        }
+        console.log(event, 'ev')
+        // if (!isMounted.current) {
+        //     console.warn('Attempted to update state on unmounted component.');
+        //     return;
+        // }
+        //
+        // // Verify the origin of the message.
+        // if (event.origin !== window.origin) {
+        //     console.warn("Message origin is not trusted.");
+        //     return;
+        // }
 
         // Validate event payload and update state
         if (event.data?.type === 'SetRequestHeaders' && event.data.payload) {
